@@ -1,0 +1,50 @@
+# Node.js dependencies
+/node_modules/
+
+# IDE / editor specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# PHP-specific
+*.log
+*.env
+*.ini
+/vendor/
+
+# Composer (PHP package manager) directories and files
+composer.lock
+composer.phar
+
+# NPM (Node.js) and Yarn package manager files
+package-lock.json
+yarn.lock
+
+# Build and distribution folders
+/dist/
+/build/
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+
+# Cache files
+.cache/
+*.cache
+
+# .env file for storing sensitive credentials
+.env
+
+# PHPStorm specific files
+.idea/
+
+# PHPUnit (if you use it for testing)
+phpunit.xml
+phpunit.xml.dist
