@@ -1,0 +1,74 @@
+Los Angeles 3820914
+San Diego 1388320
+San Jose 969655
+San Francisco 808988
+Fresno 545716
+Sacramento 526384
+Long Beach 449468
+Oakland	436504
+Bakersfield	413381
+Anaheim	340512
+Stockton 319543
+Riverside 318858
+Irvine 314621
+Santa Ana 310539
+Chula Vista	274333
+Fremont	226208
+Santa Clarita 224028
+San Bernardino 223728
+Modesto 218915
+Fontana	215465
+Moreno Valley 212392
+Oxnard 202726
+Huntington Beach 192129
+Glendale 187050
+Ontario	182457
+Elk Grove 179069
+Santa Rosa 175845
+Rancho Cucamonga 174405
+Oceanside 170020
+Garden Grove 168234
+Lancaster 166236
+Roseville 162674
+Palmdale 161404
+Corona 160238
+Salinas	159506
+Hayward	155675
+Sunnyvale 151967
+Escondido 148122
+Pomona	145502
+Visalia	144998
+Fullerton 139250
+Torrance 139224
+Victorville	138869
+Orange 138337
+Pasadena 133560
+Santa Clara	131062
+Clovis 125826
+Simi Valley	125113
+Thousand Oaks 123463
+Vallejo	122807
+Concord	122315
+Fairfield 120768
+Berkeley 118962
+Antioch	117096
+Richmond 114106
+Carlsbad 113495
+Menifee	113433
+Murrieta 111878
+Temecula 110682
+Santa Maria	109987
+Ventura	109058
+Downey 108816
+Costa Mesa 108354
+Jurupa Valley 107321
+West Covina	105617
+El Monte 103794
+Rialto 103391
+El Cajon 102991
+Inglewood 102865
+Burbank	102755
+Vacaville 102526
+San Mateo 101327
+Chico 101301
+Hesperia 100633
