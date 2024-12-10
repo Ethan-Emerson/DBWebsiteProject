@@ -73,7 +73,7 @@ if (isset($_POST['guess'])) {
     <link rel="stylesheet" href="styles.css">
     <title>Higher or Lower California Populations</title>
 </head>
-<!-- Begin the body and and add all the data -->
+<!-- Begin the body -->
 <body>
     <h1>Higher or Lower!: California Populations!!!</h1>
     <h2>By Ethan Emerson, Jason Halabo, Reese Bos, & Ara Garabedian</h2>
