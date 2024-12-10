@@ -1,74 +1,74 @@
-Los Angeles 3820914
-San Diego 1388320
-San Jose 969655
-San Francisco 808988
-Fresno 545716
-Sacramento 526384
-Long Beach 449468
-Oakland	436504
-Bakersfield	413381
-Anaheim	340512
-Stockton 319543
-Riverside 318858
-Irvine 314621
-Santa Ana 310539
-Chula Vista	274333
-Fremont	226208
-Santa Clarita 224028
-San Bernardino 223728
-Modesto 218915
-Fontana	215465
-Moreno Valley 212392
-Oxnard 202726
-Huntington Beach 192129
-Glendale 187050
-Ontario	182457
-Elk Grove 179069
-Santa Rosa 175845
-Rancho Cucamonga 174405
-Oceanside 170020
-Garden Grove 168234
-Lancaster 166236
-Roseville 162674
-Palmdale 161404
-Corona 160238
-Salinas	159506
-Hayward	155675
-Sunnyvale 151967
-Escondido 148122
-Pomona	145502
-Visalia	144998
-Fullerton 139250
-Torrance 139224
-Victorville	138869
-Orange 138337
-Pasadena 133560
-Santa Clara	131062
-Clovis 125826
-Simi Valley	125113
-Thousand Oaks 123463
-Vallejo	122807
-Concord	122315
-Fairfield 120768
-Berkeley 118962
-Antioch	117096
-Richmond 114106
-Carlsbad 113495
-Menifee	113433
-Murrieta 111878
-Temecula 110682
-Santa Maria	109987
-Ventura	109058
-Downey 108816
-Costa Mesa 108354
-Jurupa Valley 107321
-West Covina	105617
-El Monte 103794
-Rialto 103391
-El Cajon 102991
-Inglewood 102865
-Burbank	102755
-Vacaville 102526
-San Mateo 101327
-Chico 101301
-Hesperia 100633
+Los Angeles 3820914 images/Los_Angeles.jpg
+San Diego 1388320 images/San_Diego.jpg
+San Jose 969655 images/San_Jose.jpg
+San Francisco 808988 images/San_Francisco.jpeg
+Fresno 545716 images/Fresno.jpg
+Sacramento 526384 images/Sacramento.jpg
+Long Beach 449468 images/Long_Beach.jpg
+Oakland 436504 images/Oakland.JPG
+Bakersfield 413381 images/Bakersfield.jpg
+Anaheim 340512 images/Anaheim.jpg
+Stockton 319543 images/Stockton.jpeg
+Riverside 318858 images/Riverside.jpg
+Irvine 314621 images/Irvine.jpg
+Santa Ana 310539 images/Santa_Ana.jpg
+Chula Vista 274333 images/Chula_Vista.jpg
+Fremont 226208 images/Fremont.jpg
+Santa Clarita 224028 images/Santa_Clarita.jpg
+San Bernardino 223728 images/San_Bernardino.jpg
+Modesto 218915 images/Modesto.jpg
+Fontana 215465 images/Fontana.jpeg
+Moreno Valley 212392 images/Moreno_Valley.jpg
+Oxnard 202726 images/Oxnard.jpg
+Huntington Beach 192129 images/Huntington_Beach.jpg
+Glendale 187050 images/Glendale.jpg
+Ontario 182457 images/Ontario.JPG
+Elk Grove 179069 images/Elk_Grove.jpg
+Santa Rosa 175845 images/Santa_Rosa.jpg
+Rancho Cucamonga 174405 images/Rancho_Cucamonga.jpg
+Oceanside 170020 images/Oceanside.jpg
+Garden Grove 168234 images/Garden_Grove.jpg
+Lancaster 166236 images/Lancaster.jpg
+Roseville 162674 images/Roseville.jpg
+Palmdale 161404 images/Palmdale.jpg
+Corona 160238 images/Corona.jpg
+Salinas 159506 images/Salinas.jpg
+Hayward 155675 images/Hayward.jpg
+Sunnyvale 151967 images/Sunnyvale.jpg
+Escondido 148122 images/Escondido.jpg
+Pomona 145502 images/Pomona.JPG
+Visalia 144998 images/Visalia.jpg
+Fullerton 139250 images/Fullerton.jpg
+Torrance 139224 images/Torrance.jpg
+Victorville 138869 images/Victorville.jpg
+Orange 138337 images/Orange.jpg
+Pasadena 133560 images/Pasadena.jpg
+Santa Clara 131062 images/Santa_Clara.jpg
+Clovis 125826 images/Clovis.JPG
+Simi Valley 125113 images/Simi_Valley.jpg
+Thousand Oaks 123463 images/Thousand_Oaks.jpg
+Vallejo 122807 images/Vallejo.jpg
+Concord 122315 images/Concord.jpg
+Fairfield 120768 images/Fairfield.png
+Berkeley 118962 images/Berkely.jpg
+Antioch 117096 images/Antioch.JPG
+Richmond 114106 images/Richmond.jpg
+Carlsbad 113495 images/Carlsbad.jpg
+Menifee 113433 images/Menifee.jpg
+Murrieta 111878 images/Murrieta.jpg
+Temecula 110682 images/Temecula.jpg
+Santa Maria 109987 images/Santa_Maria.jpg
+Ventura 109058 images/Ventura.jpg
+Downey 108816 images/Downey.jpg
+Costa Mesa 108354 images/Costa_Mesa.jpg
+Jurupa Valley 107321 images/Jurupa_Valley.jpg
+West Covina 105617 images/West_Convina.jpg
+El Monte 103794 images/El_Monte.jpg
+Rialto 103391 images/Rialto.jpg
+El Cajon 102991 images/El_Cajon.jpg
+Inglewood 102865 images/Inglewood.jpg
+Burbank 102755 images/Burbank.jpeg
+Vacaville 102526 images/Vacaville.jpg
+San Mateo 101327 images/San_Mateo.jpg
+Chico 101301 images/Chico.JPG
+Hesperia 100633 images/Hesperia.jpg
