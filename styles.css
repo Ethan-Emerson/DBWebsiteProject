@@ -1,1 +1,38 @@
 /*Stylesheet for our PHP game: Ethan Emerson, Jason Halabo, Ara Garabedian*/
+@charset "utf-8";
+
+html {
+    background: rgb(255, 255, 255);
+    font-family: Verdana, Geneva, sans-serif;
+    height: 100%;
+}
+
+body {
+    background-color: white;
+    text-align: center;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.image-container img {
+    width: 45%; 
+    max-width: 300px; 
+    height: auto;
+    border: 2px solid black; 
+    border-radius: 10px;
+}
+
+.answerField {
+  display: flex;
+  height: 100vh;
+}
+
+.answerField .middle {
+  display: flex;
+  margin: auto;
+}
