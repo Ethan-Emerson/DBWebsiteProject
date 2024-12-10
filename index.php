@@ -10,7 +10,7 @@
 
  <!-- Create and start the body of our game-->
   <body>
-    <h1>Higher or Lower!: California Populations!!!</h1>
+    <h1>Higher or Lower: California Populations!!!</h1>
     <h2>By Ethan Emerson, Jason Halabo & Ara Garabedian</h2>
 
   </body>
