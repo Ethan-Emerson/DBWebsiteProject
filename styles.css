@@ -1,38 +1,76 @@
 /*Stylesheet for our PHP game: Ethan Emerson, Jason Halabo, Ara Garabedian*/
+/* most styles written via jason's html fanpage */
+/* tutorials used: 
+https://www.youtube.com/watch?v=1PnVor36_40
+https://www.youtube.com/watch?v=Sv_NAxi_jNs (a series of videos)
+*/
 @charset "utf-8";
 
 html {
-    background: rgb(255, 255, 255);
+    background: rgb(255, 255, 255); /* white background */
     font-family: Verdana, Geneva, sans-serif;
     height: 100%;
 }
 
+/* basic body style */
 body {
     background-color: white;
     text-align: center;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.image-container {
+/* scores have its own little box around (grayed out) */
+.scores {
+    background-color: #f5f5f5;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 300px;
+    font-weight: bold; /* bold font */
+}
+
+/* center the game, using a flex to force the game to be centered */
+.game-container {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 40px;
+    margin: 30px 0;
+}
+
+/* citys look like they have their own "tab" */
+.city {
+    flex: 1;
+    max-width: 400px; /* 400px for max width prevents larger squares */
     padding: 20px;
+    background-color: #f9f9f9; 
+    /* box shadows present the city off */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.image-container img {
-    width: 45%; 
-    max-width: 300px; 
-    height: auto;
-    border: 2px solid black; 
-    border-radius: 10px;
+/* buttons are placed at the bottom */
+button {
+    padding: 12px 30px;
+    margin: 10px;
+    font-size: 1.1em;
+    /* cursor allows it to change the cursor to a pointing finger */
+    cursor: pointer;
+    /* border makes the buttons rounded, found on stackoverflow */
+    border: none;
+    border-radius: 5px;
+    background-color: green;
+    color: white;
 }
 
-.answerField {
-  display: flex;
-  height: 100vh;
+
+/* label edits, making it so that they have different margins */
+h1 {
+    color: black;
+    margin-bottom: 10px;
 }
 
-.answerField .middle {
-  display: flex;
-  margin: auto;
+h2 {
+    color: black;
+    margin-bottom: 30px;
 }
