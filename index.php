@@ -26,12 +26,6 @@ if (isset($_POST['player_name']) && isset($_SESSION['highest_score'])) {
     $playerName = $_POST['player_name'];
     $highestScore = $_SESSION['highest_score'];
 
-   /* // Prepare an SQL query to insert the player's name and score into the database
-    $stmt = $conn->prepare("INSERT INTO PLAYER (P_NAME, P_SCORE) VALUES (?, ?)");
-    $stmt->bind_param("si", $playerName, $highestScore); // Bind the variables to the SQL query
-    $stmt->execute(); // Execute the query to save the player's data in the database
-    $stmt->close(); // Close the prepared statement to free <resources></resources>*/
-
     //Query the database
     $sql = "INSERT INTO PLAYER (P_NAME, P_SCORE) VALUES ('$playerName', '$highestScore');";
     $conn->query($sql);
@@ -47,6 +41,8 @@ $sql = "SELECT CITY_NAME, CITY_POP, CITY_IMAGE FROM CITY ORDER BY RAND() LIMIT 2
 $result = $conn->query($sql);
 $city1 = null;
 $city2 = null;
+$_SESSION['city1_pop'];
+$_SESSION['city2_pop']; //this if for checking cities on the previous run, we had a bad error where it was constatly grabing new data and comparing those
 
 // Check if exactly two cities were returned and then grab the data
 if ($result && $result->num_rows === 2) {
@@ -79,23 +75,22 @@ if (isset($_POST['guess'])) {
 
     // Check if the user's guess was correct
     $correct = false;
-    echo "<p>" . $city1['CITY_POP'] ." ".$city2['CITY_POP'] . "</p>";
+    echo "<p>City 1 Population: " . htmlspecialchars($_SESSION['city1_pop']) . "</p>";
+    echo "<p>City 2 Population: " . htmlspecialchars($_SESSION['city2_pop']) . "</p>";
     if($guess == 'higher')
     {
-        if($city2['CITY_POP'] > $city1['CITY_POP']) //correct higher guess
+        if($_SESSION['city1_pop'] < $_SESSION['city2_pop']) //correct higher guess
         {
             $correct = true;
         }
     }
     else //player guesses lower
     { 
-        if($city2['CITY_POP'] < $city1['CITY_POP']) //correct lower guess
+        if($_SESSION['city1_pop'] > $_SESSION['city2_pop']) //correct lower guess
         {
             $correct = true;
         }
     }
-   /* $correct = ($guess === 'higher' && $city2['CITY_POP'] > $city1['CITY_POP']) ||
-               ($guess === 'lower' && $city2['CITY_POP'] < $city1['CITY_POP']);*/
 
     //Correct guess, increment the score and update the highest score if needed.
     if ($correct) {
@@ -107,8 +102,11 @@ if (isset($_POST['guess'])) {
         $showForm = true; 
         $_SESSION['current_score'] = 0;
     }
-    $_POST['guess'] = null;
     }
+
+    //set new previous run values for the next guess that the player makes
+    $_SESSION['city1_pop'] = $city1['CITY_POP'];
+    $_SESSION['city2_pop'] = $city2['CITY_POP'];
 ?>
 
 <!-- Basic setup stuff, like languages and charset and stylesheet linking -->
