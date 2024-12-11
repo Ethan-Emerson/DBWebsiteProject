@@ -5,149 +5,168 @@
 
  <!-- Initial Script -->
 <?php
-// Start a session to keep track of user-specific data, like scores, across page loads
-session_start();
+session_start(); //keep track of current data: like scores, across page loads
 
-// Database Connection Details
-// These variables store the information needed to connect to the database
-$servername = "iss4014.cddnrt1zeyhj.us-east-1.rds.amazonaws.com"; // The database server's address
-$username = "admin"; // Username to access the database
-$password = "password"; // Password to access the database
-$dbname = "game"; // Name of the database we are using
+//setup database variables
+$servername = "iss4014.cddnrt1zeyhj.us-east-1.rds.amazonaws.com"; 
+$username = "admin";
+$password = "password";
+$dbname = "game";
 
-// Create a connection to the database
+// Connect to the database
 $conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check if the connection to the database failed
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error); // Stop everything and show an error if the connection failed
+if ($conn->connect_error) {  //check and see if it worked, if it didn't die
+    die("Connection failed: " . $conn->connect_error);
 }
 
 // Handle the form submission when a player enters their name after losing
 if (isset($_POST['player_name']) && isset($_SESSION['highest_score'])) {
-    $playerName = $_POST['player_name']; // Get the player's name from the form
-    $highestScore = $_SESSION['highest_score']; // Retrieve the highest score stored in the session
 
-    // Prepare an SQL query to insert the player's name and score into the database
+    //Get user variables
+    $playerName = $_POST['player_name'];
+    $highestScore = $_SESSION['highest_score'];
+
+   /* // Prepare an SQL query to insert the player's name and score into the database
     $stmt = $conn->prepare("INSERT INTO PLAYER (P_NAME, P_SCORE) VALUES (?, ?)");
     $stmt->bind_param("si", $playerName, $highestScore); // Bind the variables to the SQL query
     $stmt->execute(); // Execute the query to save the player's data in the database
-    $stmt->close(); // Close the prepared statement to free resources
+    $stmt->close(); // Close the prepared statement to free <resources></resources>*/
 
-    // Reset the current score to start a new game
+    //Query the database
+    $sql = "INSERT INTO PLAYER (P_NAME, P_SCORE) VALUES ('$playerName', '$highestScore');";
+    $conn->query($sql);
+    $conn->close();
+
+    //reset current variables since the user lost and then let them know their stuff was saved
     $_SESSION['current_score'] = 0;
-
-    // Notify the player that their score has been saved
     echo "<p>Score saved! Thanks for playing, $playerName!</p>";
 }
 
-// Select two random cities from the database for the game
-$sql = "SELECT CITY_NAME, CITY_POP, CITY_IMAGE FROM CITY ORDER BY RAND() LIMIT 2"; // Query to get random cities
-$result = $conn->query($sql); // Execute the query
-
+// Select two random cities from the database for the game and then query the database
+$sql = "SELECT CITY_NAME, CITY_POP, CITY_IMAGE FROM CITY ORDER BY RAND() LIMIT 2";
+$result = $conn->query($sql);
 $city1 = null;
 $city2 = null;
 
-// Check if exactly two cities were returned
+// Check if exactly two cities were returned and then grab the data
 if ($result && $result->num_rows === 2) {
-    $cities = $result->fetch_all(MYSQLI_ASSOC); // Fetch the city data as an associative array
-    $city1 = $cities[0]; // The first city
-    $city2 = $cities[1]; // The second city
+    $cities = $result->fetch_all(MYSQLI_ASSOC);
+    $city1 = $cities[0];
+    $city2 = $cities[1]; 
 }
 
-// Fetch the overall highest score from the database
-$overallHighestScore = 0; // Initialize the overall highest score
-$highestScoreQuery = "SELECT MAX(P_SCORE) AS max_score FROM PLAYER"; // Query to get the highest score
+// Grab the highest score from the database to compare to the current player
+$overallHighestScore = 0; 
+$highestScoreQuery = "SELECT MAX(P_SCORE) AS max_score FROM PLAYER"; 
 $highestScoreResult = $conn->query($highestScoreQuery);
 if ($highestScoreResult && $highestScoreResult->num_rows > 0) {
-    $row = $highestScoreResult->fetch_assoc(); // Fetch the highest score
+    $row = $highestScoreResult->fetch_assoc();
     $overallHighestScore = $row['max_score'];
 }
+$conn->close();
 
-$conn->close(); // Close the database connection
-
-// Initialize session variables for scores if they don't exist
+// Essentially this code creates some sesion variables if they don't already exist (so like if the player loads into the game for the first time)
 if (!isset($_SESSION['current_score'])) {
-    $_SESSION['current_score'] = 0; // Start the current score at 0
+    $_SESSION['current_score'] = 0;
 }
 if (!isset($_SESSION['highest_score'])) {
-    $_SESSION['highest_score'] = 0; // Start the highest score at 0
+    $_SESSION['highest_score'] = 0;
 }
 
-// Handle the user's guess (Higher or Lower)
+//This block handles what the user guesses (higher or lower radio button )
 if (isset($_POST['guess'])) {
-    $guess = $_POST['guess']; // Get the user's guess (higher or lower)
+    $guess = $_POST['guess']; 
 
     // Check if the user's guess was correct
-    $correct = ($guess === 'higher' && $city2['CITY_POP'] > $city1['CITY_POP']) ||
-               ($guess === 'lower' && $city2['CITY_POP'] < $city1['CITY_POP']);
+    $correct = false;
+    echo "<p>" . $city1['CITY_POP'] ." ".$city2['CITY_POP'] . "</p>";
+    if($guess == 'higher')
+    {
+        if($city2['CITY_POP'] > $city1['CITY_POP']) //correct higher guess
+        {
+            $correct = true;
+        }
+    }
+    else //player guesses lower
+    { 
+        if($city2['CITY_POP'] < $city1['CITY_POP']) //correct lower guess
+        {
+            $correct = true;
+        }
+    }
+   /* $correct = ($guess === 'higher' && $city2['CITY_POP'] > $city1['CITY_POP']) ||
+               ($guess === 'lower' && $city2['CITY_POP'] < $city1['CITY_POP']);*/
 
+    //Correct guess, increment the score and update the highest score if needed.
     if ($correct) {
-        // If correct, increment the current score
         $_SESSION['current_score']++;
-        // Update the highest score if the current score is greater
         if ($_SESSION['current_score'] > $_SESSION['highest_score']) {
             $_SESSION['highest_score'] = $_SESSION['current_score'];
         }
-    } else {
-        // If incorrect, reset only the current score
-        $showForm = true; // Show the form to save the player's name
+    } else { //incorrect guess, tell the person they are wrong and set their current score back to zero
+        $showForm = true; 
         $_SESSION['current_score'] = 0;
     }
-}
+    $_POST['guess'] = null;
+    }
 ?>
 
-
-<!DOCTYPE html> <!-- Declare the document as an HTML5 document -->
-<html lang="en"> <!-- Specify the language as English -->
+<!-- Basic setup stuff, like languages and charset and stylesheet linking -->
+<!DOCTYPE html> 
+<html lang="en"> 
 <head>
-    <meta charset="UTF-8"> <!-- Ensure text is displayed correctly -->
-    <link rel="stylesheet" href="styles.css"> <!-- Link to an external CSS file for styling -->
-    <title>Higher or Lower California Populations</title> <!-- Set the title of the web page -->
+    <meta charset="UTF-8"> 
+    <link rel="stylesheet" href="styles.css">
+    <title>Higher or Lower California Populations</title>
 </head>
 <body>
-    <!-- Header Section -->
+    <!-- Body Section of the HTML: The first two things below are the headers that show our project name and our names-->
     <h1>Higher or Lower!: California Populations!!!</h1>
     <h2>By Ethan Emerson, Jason Halabo, Reese Bos, & Ara Garabedian</h2>
 
-    <!-- Display the current, user's highest, and overall highest scores -->
+    <!-- This stuff right here grabs the player's current score from the ongoing session stuff and displays it -->
     <div class="scores">
-        <p>Current Score: <?= $_SESSION['current_score'] ?></p> <!-- Display the current score -->
-        <p>Your Highest Score: <?= $_SESSION['highest_score'] ?></p> <!-- Display the user's highest score -->
-        <p>Overall Highest Score: <?= $overallHighestScore ?></p> <!-- Display the overall highest score -->
+        <p>Current Score: <?= $_SESSION['current_score'] ?></p> 
+        <p>Your Highest Score: <?= $_SESSION['highest_score'] ?></p> 
+        <p>Overall Highest Score: <?= $overallHighestScore ?></p> 
     </div>
-
+    
+    <!-- This script right here activates when someone loses or guesses incorrectly and the form pops up to save their progress -->
     <?php if (isset($showForm) && $showForm): ?>
-        <!-- Form to save the user's highest score after losing -->
-        <form method="POST"> <!-- Form sends data using the POST method -->
+        <form method="POST"> 
             <p>Oh no! You lost. Save your highest score!</p>
             <label for="player_name">Your Name:</label>
-            <input type="text" id="player_name" name="player_name" required> <!-- Input for the player's name -->
-            <button type="submit">Save Score</button> <!-- Submit button -->
+            <input type="text" id="player_name" name="player_name" required>
+            <button type="submit">Save Score</button>
         </form>
+
+        <!-- This Script and HTML elements are here if the person first starts the game or they are still allive after guess correctly -->
     <?php elseif ($city1 && $city2): ?>
-        <!-- Gameplay interface -->
         <form method="POST">
-            <div class="game-container">
-                <!-- Display the first city -->
+            <div class="game-container"> <!-- this div element here helps us seperate the cities or make them appear side by side -->
+                
+            <!-- Display the first city -->
                 <div class="city">
-                    <h3><?= htmlspecialchars($city1['CITY_NAME']) ?></h3> <!-- City 1 name -->
-                    <p>Population: <?= htmlspecialchars($city1['CITY_POP']) ?></p> <!-- City 1 population -->
+                    <h3><?= htmlspecialchars($city1['CITY_NAME']) ?></h3>
+                    <p>Population: <?= htmlspecialchars($city1['CITY_POP']) ?></p> 
                     <img src="<?= htmlspecialchars($city1['CITY_IMAGE']) ?>" alt="<?= htmlspecialchars($city1['CITY_NAME']) ?>" class="city-image"> <!-- City 1 image -->
                 </div>
+
                 <!-- Display the second city -->
                 <div class="city">
-                    <h3><?= htmlspecialchars($city2['CITY_NAME']) ?></h3> <!-- City 2 name -->
-                    <p>Population: ???</p> <!-- Population hidden for guessing -->
+                    <h3><?= htmlspecialchars($city2['CITY_NAME']) ?></h3> 
+                    <p>Population: ???</p> <!-- hidden for guessing (yay)-->
                     <img src="<?= htmlspecialchars($city2['CITY_IMAGE']) ?>" alt="<?= htmlspecialchars($city2['CITY_NAME']) ?>" class="city-image"> <!-- City 2 image -->
                 </div>
             </div>
+
             <!-- Buttons for the user to make a guess -->
             <button type="submit" name="guess" value="higher">Higher</button>
             <button type="submit" name="guess" value="lower">Lower</button>
         </form>
+
+    <!-- these quick php scrips are used if the city is not fetched -->
     <?php else: ?>
-        <!-- Error message if cities cannot be fetched -->
         <p>Error fetching cities. Please try again later.</p>
     <?php endif; ?>
 </body>
